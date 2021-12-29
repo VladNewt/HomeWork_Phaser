@@ -32,11 +32,11 @@ public class Copyer implements Callable<String> {
     }
 
     @Override
-    public String call() throws Exception {
+    public String call() {
 
         System.out.println("Выполняется копирование файла");
-        //FileManager.copyFile(getSourcePath(),getDestinationPath());
-        Tools.sleepThread(2000);
+        Tools.sleepThread(3000);
+        FileManager.copyFile(getSourcePath(),getDestinationPath());
 
         return "Копирование завершено";
     }

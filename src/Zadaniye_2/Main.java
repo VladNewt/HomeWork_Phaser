@@ -18,22 +18,28 @@ public class Main {
         System.out.println("Введите путь назначения нового файла:");
         String destinationPath = sc.nextLine();
 
+        System.out.println("Введите /y для начала копирования файла или /q для прерывания");
+        String exit = sc.nextLine();
+
         ExecutorService service = Executors.newSingleThreadExecutor();
         Future<String> task = service.submit(new Copyer(sourcePath, destinationPath));
 
-        System.out.println("Введите /q для выхода");
-        String exit = sc.nextLine();
+
 
 
         try {
             while (!task.isDone()) {
                 if (exit.equals("/q")) {
-                    service.shutdown();
                     System.out.println("Копирование прервано");
+                    task.cancel(false);
+                    service.shutdown();
                     break;
                 }
-
+                System.out.println(task.get());
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         finally {
             service.shutdown();

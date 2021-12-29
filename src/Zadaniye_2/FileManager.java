@@ -15,10 +15,6 @@ public class FileManager {
             int count;
             while ((count=fis.read(buf))>0)
                 fos.write(buf,0,count);
-            System.out.println("END");
-            fis.close();
-            fos.close();
-            JOptionPane.showMessageDialog(null,"Копирование выполнено успешно");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Копирование не выполнено","alert", JOptionPane.ERROR_MESSAGE);
