@@ -7,8 +7,7 @@ public class Main {
 
         Phaser phaser = new Phaser(1);
 
-        ControlPhather controlThread = new ControlPhather("Control Thread",phaser);
-        controlThread.start();
-        controlThread.control();
+        new ControlPhather("Control Thread",phaser).start();
+
     }
 }
